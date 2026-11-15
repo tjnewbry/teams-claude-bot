@@ -4,6 +4,8 @@ A Windows program that lets you run Claude Code on your PC from your Microsoft T
 
 The bot opens Teams in its own Chromium window and watches only your (You) self-chat. It checks that it's in that chat before every read and send, and never acts in any other chat. A message starting with `/c ` goes to the Claude Code CLI in a project folder you choose, and Claude's reply is posted back starting with `c: `.
 
+[Software Demo Video](https://www.youtube.com/watch?v=Q3iRY90WHgQ)
+
 ## Instructions for Build and Use
 
 Steps to build and/or run the software:
@@ -65,7 +67,8 @@ The following items I plan to fix, improve, and/or add to this project in the fu
 * [ ] A `/c status` command that shows the project folder, model and whether a job is running
 * [ ] Switch the project folder from the chat
 * [ ] Automated tests for the Teams side
-* [ ] A demo video and screenshots for this README
+* [x] A demo video
+* [ ] Screenshots for this README
 
 ## History
 
