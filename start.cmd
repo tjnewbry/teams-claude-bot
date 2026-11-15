@@ -7,5 +7,5 @@ if not exist "%B%runtime\node-v22.23.4-win-x64\node.exe" (
   exit /b 1
 )
 set "PLAYWRIGHT_BROWSERS_PATH=%B%runtime\browsers"
-"%B%runtime\node-v22.23.4-win-x64\node.exe" "%B%src\bot.js" %*
+"%B%runtime\node-v22.23.4-win-x64\node.exe" "%B%src\index.js" %*
 pause

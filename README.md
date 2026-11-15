@@ -39,12 +39,38 @@ The default model is `claude-opus-5-5` at effort `high`. To stop the bot, close 
 
 ## Layout
 
+The code is split into three parts that only meet in `src/index.js`:
+
 ```
-src/bot.js         the bot
-tools/login.js     opens the bot's browser profile to sign in to Teams by hand
-tools/inspect.js   dev helper: runs a JS file in the open Teams page over CDP (port 9333)
-start.cmd          starts the bot with the portable runtime
-setup.cmd          creates runtime\ and node_modules\
+src/
+  index.js              entry point: wires the parts together and starts the bot
+  config.js             settings (Teams URL, poll interval, default model, file locations)
+  startup.js            command-line arguments and the project-folder prompt
+  log.js                console + bot.log logging
+  claude/               Claude Code, knows nothing about Teams
+    findClaude.js         finds the CLI bundled with the Claude desktop app
+    ClaudeSession.js      runs prompts in one ongoing conversation (run, reset)
+  teams/                Teams, knows nothing about Claude
+    SelfChat.js           browser, self-chat lock checks, reading new messages, sending
+    pageScripts.js        code that runs inside the Teams page
+  bot/                  the only part that knows about both
+    Bot.js                watches for /c messages, built-in commands, queue, replies
+    paths.js              %/ and ~/ path shorthand
+test/
+  bot.test.js           bot tests with a fake chat and a fake Claude (npm test)
+tools/
+  login.js              opens the bot's browser profile to sign in to Teams by hand
+  inspect.js            dev helper: runs a JS file in the open Teams page over CDP (port 9333)
+start.cmd               starts the bot with the portable runtime
+setup.cmd               creates runtime\ and node_modules\
+```
+
+To add a chat command, add an entry to `this.commands` in `src/bot/Bot.js`.
+
+To run the tests with the portable runtime:
+
+```
+runtime\node-v22.23.4-win-x64\node.exe --test test/*.test.js
 ```
 
 These are created locally and not committed:
