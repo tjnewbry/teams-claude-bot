@@ -1,0 +1,13 @@
+# Signed-in Teams browser profile: private, never commit
+profile/
+
+# Portable Node and Playwright browsers (setup.cmd recreates them)
+runtime/
+node_modules/
+
+# Bot output
+bot.log
+logs/
+last-error.png
+
+*.bak
